@@ -1,3 +1,8 @@
+import customerModel from "../../model/customerModel.js";
+import {customer} from "../../db/db.js";
+import itemModel from "../../model/itemModel.js";
+import {items} from "../../db/db.js";
+
 $('#customerForm').css('display','none');
 $('#itemForm').css('display','none');
 $('#orderForm').css('display','none');

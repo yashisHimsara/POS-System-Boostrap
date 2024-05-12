@@ -1,72 +1,59 @@
-import itemModel from "../model/itemModel";
-import {item} from "../db/db";
-
-var recordIndex;
+import itemModel from "../model/itemModel.js";
+import {customer, items} from "../db/db.js";
 
 function loadTable(){
-    $('#ItemTable').empty();
+    //$('#ItemTable').empty();
 
-    items.map((item, index) => {
+    items.map((items, index) => {
         let record = `
             <tr>
-                <td class="item-id-value">${item.id}</td>
-                <td class="item-name-value">${item.name}</td> 
-                <td class="item-price-value">${item.price}</td>
-                <td class="item-qty-value">${item.qty}</td> 
+                <td class="customer-id-valu">${items.id}</td>
+                <td class="customer-name-value">${items.name}</td>
+                <td class="customer-address-value">${items.qty}</td>
+                <td class="customer-salary-value">${items.price}</td>
             </tr>`;
-        $("#ItemTable").append(record);
+        $("#iTable").append(record);
     });
 }
+$(document).ready(function(){
+    $("#addItem").click(function(){
+        var inputValueId = $("#itemId").val();
+        var inputValueFname = $("#ItemName").val();
+        var inputValueQty = $("#itemQty").val();
+        var inputValueprice = $("#unitPrice").val();
 
-$(".item_save_btn").on('click', () => {
-
-    let alertConfrim = confirm('Do you really want to add this item');
-    if (alertConfrim==true) {
-
-        var itemId = $('#itemId').val();
-        var itemName = $('#ItemName').val();
-        var itemPrice = $('#unitPrice').val();
-        var itemQty = $('#itemQty').val();
-
-        let itemObj = new itemModel(
-            itemId, itemName, itemPrice, itemQty
-        );
+        var itemObj = new itemModel(inputValueId, inputValueFname, inputValueQty, inputValueprice);
 
         items.push(itemObj);
 
-        loadTable();
-        clearField();
-    }else {
-        clearField();
-    }
+        var newRow = `<tr>
+            <td>${inputValueId}</td>
+            <td>${inputValueFname}</td>
+            <td>${inputValueQty}</td>
+            <td>${inputValueprice}</td>
+        </tr>`;
+
+        $("#iTable").append(newRow);
+
+        $("#itemId").val("");
+        $("#ItemName").val("");
+        $("#itemQty").val("");
+        $("#unitPrice").val("");
+    });
 });
 
-$("#ItemTable").on('click', 'tr', function() {
-    let index = $(this).index();
-    recordIndex = index;
-
-    let id = $(this).find(".item-id-value").text();
-    let name = $(this).find(".item-name-value").text();
-    let price = $(this).find(".item-price-value").text();
-    let qty = $(this).find(".item-qty-value").text();
-
-
-    $("#itemId").val(id);
-    $("#ItemName").val(name);
-    $("#unitPrice").val(price);
-    $("#itemQty").val(qty);
-});
-$("#ItemTable").on('dblclick','tr',function() {
+var value;
+$("#iTable").on('dblclick','tr',function() {
     let alertConfrimDelete = confirm('Do you really want to delete this item');
-    if (alertConfrimDelete==true){
+    if (alertConfrimDelete==true) {
         let index = $(this).index();
-        recordIndex = index;
-        $('.item_delete_btn').click();
+        value = index;
+        $('#deleteItem').click();
     }
 });
 
-$(".item_delete_btn").on('click', () => {
-    items.splice(recordIndex, 1);
+$("#deleteItem").on('click', () => {
+    items.splice(value, 1);
     loadTable();
     clearField();
 });
@@ -74,22 +61,7 @@ $(".item_delete_btn").on('click', () => {
 function clearField(){
     $("#itemId").val('');
     $("#ItemName").val('');
-    $("#unitPrice").val('');
     $("#itemQty").val('');
+    $("#unitPrice").val('');
 }
 
-$(".item_update_btn").on('click', () => {
-    var itemId = $('#itemId').val();
-    var itemName = $('#ItemName').val();
-    var itemPrice = $('#unitPrice').val();
-    var itemQty = $('#itemQty').val();
-
-    let itemUpdateObj = items[recordIndex];
-    itemUpdateObj.id=itemId;
-    itemUpdateObj.name=itemName;
-    itemUpdateObj.price=itemPrice;
-    itemUpdateObj.qty=itemQty
-
-    loadTable();
-    clearField();
-});
