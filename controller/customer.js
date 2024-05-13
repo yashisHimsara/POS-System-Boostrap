@@ -1,6 +1,7 @@
 import customerModel from "../model/customerModel.js";
 import {customer} from "../db/db.js";
 
+var value;
 
 function loadTable(){
     $('#customerTable').empty();
@@ -8,17 +9,16 @@ function loadTable(){
     customer.map((item, index) => {
         let record = `
             <tr>
-                <td class="customer-id-valu">${customer.id}</td>
-                <td class="customer-name-value">${customer.name}</td>
-                <td class="customer-address-value">${customer.address}</td>
-                <td class="customer-salary-value">${customer.salary}</td>
+                <td class="customer-id-value">${item.id}</td>
+                <td class="customer-name-value">${item.name}</td>
+                <td class="customer-address-value">${item.address}</td>
+                <td class="customer-salary-value">${item.salary}</td>
             </tr>`;
-        $("#cusTable").append(record);
+        $("#customerTable").append(record);
     });
 }
 
-$(document).ready(function(){
-    $("#addCustomer").click(function(){
+    $("#addCustomer").on('click',function(){
         // console.log("addcustomer")
         var inputValueId = $("#cusID").val();
         var inputValueFname = $("#cusName").val();
@@ -29,14 +29,7 @@ $(document).ready(function(){
 
         customer.push(cusObj);
 
-        var newRow = `<tr>
-            <td>${inputValueId}</td>
-            <td>${inputValueFname}</td>
-            <td>${inputValueAddress}</td>
-            <td>${inputValueSalary}</td>
-        </tr>`;
-
-        $("#cusTable tbody").append(newRow);
+        loadTable();
 
         // Clear input fields
         $("#cusID").val("");
@@ -44,8 +37,22 @@ $(document).ready(function(){
         $("#cusAddress").val("");
         $("#cusSalary").val("");
     });
+
+$("#cusTable").on('click','tr',function() {
+    let index=$(this).index();
+    value=index;
+
+    let id=$(this).find(".customer-id-value").text();
+    let name=$(this).find(".customer-name-value").text();
+    let address=$(this).find(".customer-address-value").text();
+    let salary=$(this).find(".customer-salary-value").text();
+
+    $("#cusID").val(id);
+    $("#cusName").val(name);
+    $("#cusAddress").val(address);
+    $("#cusSalary").val(salary);
 });
-var value;
+
 $("#cusTable").on('dblclick','tr',function() {
     let alertConfrimDelete = confirm('Do you really want to delete this customer');
     if (alertConfrimDelete==true) {
@@ -56,7 +63,7 @@ $("#cusTable").on('dblclick','tr',function() {
 });
 
 $("#deleteCustomer").on('click', () => {
-    customer.splice(value, 1);
+    let splice = customer.splice(value, 1);
     loadTable();
     clearField();
 });
@@ -66,4 +73,26 @@ function clearField(){
     $("#cusName").val('');
     $("#cusAddress").val('');
     $("#cusSalary").val('');
+}
+$("#updateCustomer").on('click', () => {
+    var customerID = $('#cusID').val();
+    var customerName = $('#cusName').val();
+    var customerAddress = $('#cusAddress').val();
+    var customerSalary = $('#cusSalary').val();
+
+    let customerUpdateObj = customer[value];
+    customerUpdateObj.id=customerID;
+    customerUpdateObj.name=customerName;
+    customerUpdateObj.address=customerAddress;
+    customerUpdateObj.salary=customerSalary;
+
+    loadTable();
+    clearField();
+});
+
+function loadAllCustomerId() {
+    $('#cusID').empty();
+    for (let customerArElement of customer) {
+        $('#cusID').append(`<option>${customerArElement.id}</option>`);
+    }
 }

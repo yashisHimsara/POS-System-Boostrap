@@ -41,7 +41,7 @@ $(document).on('keydown', function(event) {
     }
 });
 
-function checkIdField(){
+$('#cusID').on('onkeyup',function (){
     var cusid = $('#cusID').val();
     var cusidPattern = /^C\d{3}$/;
     var errorMessage = $('.errorMessageId');
@@ -53,10 +53,9 @@ function checkIdField(){
         errorMessage.hide();
         $('#cusID').css({'border': '2px solid green'});
     }
+});
 
-}
-
-function checkNameField() {
+$('#cusName').on('onkeyup',function (){
     var cusName = $('#cusName').val();
     var cusNamePattern = /^\s*\S.{3,18}\S\s*$/;
     var errorMessageName=$('.errorMessageName');
@@ -68,9 +67,9 @@ function checkNameField() {
         errorMessageName.hide();
         $('#cusName').css({'border': '2px solid green'});
     }
-}
+});
 
-function checkFieldAddress() {
+$('#cusAddress').on('onekeyup',function (){
     var cusAddress = $('#cusAddress').val();
     var cusAddressPattern = /^.{7,}$/;
     var errorMessageAddress = $('.errorMessageAddress');
@@ -82,9 +81,9 @@ function checkFieldAddress() {
         errorMessageAddress.hide();
         $('#cusAddress').css('border', '2px solid green');
     }
-}
+});
 
-function checkFieldSalary() {
+$('#cusSalary').on('onkeyup' , function (){
     var cusSalary = $('#cusSalary').val();
     var cusSalaryPattern = /^(?:\d+|\d+\.\d{2})$/;
     var errorMessageSalary = $('.errorMessageSalary');
@@ -96,9 +95,9 @@ function checkFieldSalary() {
         errorMessageSalary.hide();
         $('#cusSalary').css('border', '2px solid green');
     }
-}
+});
 
-function checkFieldItemId() {
+$('#itemId').on('onekeyup' , function (){
     var itemId = $('#itemId').val();
     var itemIdPattern = /^I\d{3}$/;
     var errorMessageItemId = $('.errorMessageItemId');
@@ -110,7 +109,7 @@ function checkFieldItemId() {
         errorMessageItemId.hide();
         $('#itemId').css('border', '2px solid green');
     }
-}
+});
 
 function checkFieldItemName() {
     var itemName = $('#ItemName').val();
