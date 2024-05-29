@@ -1,8 +1,3 @@
-import customerModel from "../../model/customerModel.js";
-import {customer} from "../../db/db.js";
-import itemModel from "../../model/itemModel.js";
-import {items} from "../../db/db.js";
-
 $('#customerForm').css('display','none');
 $('#itemForm').css('display','none');
 $('#orderForm').css('display','none');
@@ -41,19 +36,19 @@ $(document).on('keydown', function(event) {
     }
 });
 
-$('#cusID').on('onkeyup',function (){
-    var cusid = $('#cusID').val();
-    var cusidPattern = /^C\d{3}$/;
-    var errorMessage = $('.errorMessageId');
-
-    if (!cusidPattern.test(cusid)) {
-        errorMessage.show();
-        $('#cusID').css({'border': '2px solid red'});
-    } else {
-        errorMessage.hide();
-        $('#cusID').css({'border': '2px solid green'});
-    }
-});
+// $('#cusID').on('onkeyup',function (){
+//     var cusid = $('#cusID').val();
+//     var cusidPattern = /^C\d{3}$/;
+//     var errorMessage = $('.errorMessageId');
+//
+//     if (!cusidPattern.test(cusid)) {
+//         errorMessage.show();
+//         $('#cusID').css({'border': '2px solid red'});
+//     } else {
+//         errorMessage.hide();
+//         $('#cusID').css({'border': '2px solid green'});
+//     }
+// });
 
 $('#cusName').on('onkeyup',function (){
     var cusName = $('#cusName').val();
@@ -68,8 +63,22 @@ $('#cusName').on('onkeyup',function (){
         $('#cusName').css({'border': '2px solid green'});
     }
 });
+function checkIdField(){
+    var cusid = $('#cusID').val();
+    var cusidPattern = /^C\d{2}-\d{3}$/;
+    var errorMessage = $('.errorMessageId');
 
-$('#cusAddress').on('onekeyup',function (){
+    if (!cusidPattern.test(cusid)) {
+        errorMessage.show();
+        $('#cusID').css({'border': '2px solid red'});
+    } else {
+        errorMessage.hide();
+        $('#cusID').css({'border': '2px solid green'});
+    }
+
+}
+
+$('#cusAddress').on('onclick',function (){
     var cusAddress = $('#cusAddress').val();
     var cusAddressPattern = /^.{7,}$/;
     var errorMessageAddress = $('.errorMessageAddress');
@@ -83,7 +92,7 @@ $('#cusAddress').on('onekeyup',function (){
     }
 });
 
-$('#cusSalary').on('onkeyup' , function (){
+$('#cusSalary').on('onclick' , function (){
     var cusSalary = $('#cusSalary').val();
     var cusSalaryPattern = /^(?:\d+|\d+\.\d{2})$/;
     var errorMessageSalary = $('.errorMessageSalary');
@@ -97,7 +106,7 @@ $('#cusSalary').on('onkeyup' , function (){
     }
 });
 
-$('#itemId').on('onekeyup' , function (){
+$('#itemId').on('onclick' , function (){
     var itemId = $('#itemId').val();
     var itemIdPattern = /^I\d{3}$/;
     var errorMessageItemId = $('.errorMessageItemId');
@@ -111,7 +120,7 @@ $('#itemId').on('onekeyup' , function (){
     }
 });
 
-function checkFieldItemName() {
+$('#ItemName').on('onclick' , function (){
     var itemName = $('#ItemName').val();
     var ItemNamePattern = /^\s*\S.{3,18}\S\s*$/;
     var errorMessageItemName = $('.errorMessageItemName');
@@ -123,23 +132,9 @@ function checkFieldItemName() {
         errorMessageItemName.hide();
         $('#ItemName').css('border', '2px solid green');
     }
-}
+});
 
-function checkFieldItemPrice() {
-    var itemPrice = $('#unitPrice').val();
-    var ItemPricePattern  = /^(?:\d+|\d+\.\d{2})$/;
-    var errorMessageItemPrice = $('.errorMessageItemPrice');
-
-    if (!ItemPricePattern.test(itemPrice)) {
-        errorMessageItemPrice.show();
-        $('#unitPrice').css('border', '2px solid red');
-    } else {
-        errorMessageItemPrice.hide();
-        $('#unitPrice').css('border', '2px solid green');
-    }
-}
-
-function checkFieldItemQty() {
+$('#itemQty').on('onclick' , function (){
     var itemQty = $('#itemQty').val();
     var itemQtyPattern = /^\d+$/;
     var errorMessageItemQty = $('.errorMessageItemQty');
@@ -151,4 +146,18 @@ function checkFieldItemQty() {
         errorMessageItemQty.hide();
         $('#itemQty').css('border', '2px solid green');
     }
-}
+});
+
+$('#unitPrice').on('onclick' , function (){
+    var itemPrice = $('#unitPrice').val();
+    var ItemPricePattern  = /^(?:\d+|\d+\.\d{2})$/;
+    var errorMessageItemPrice = $('.errorMessageItemPrice');
+
+    if (!ItemPricePattern.test(itemPrice)) {
+        errorMessageItemPrice.show();
+        $('#unitPrice').css('border', '2px solid red');
+    } else {
+        errorMessageItemPrice.hide();
+        $('#unitPrice').css('border', '2px solid green');
+    }
+});

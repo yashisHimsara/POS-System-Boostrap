@@ -75,33 +75,6 @@
         </div>
     </div>
 </section>
-<!--    <nav class="navbar navbar-expand-lg navbar-dark navtop bg-success">-->
-<!--        <div class="container-fluid">-->
-<!--            <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"-->
-<!--                    class="navbar-toggler"-->
-<!--                    data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">-->
-<!--                <span class="navbar-toggler-icon"></span>-->
-<!--            </button>-->
-<!--            <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<!--                <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
-<!--                    <li class="nav-item">-->
-<!--                        <a aria-current="page" class="nav-link active navigation" href="index.html" id="linkHome">Home</a>-->
-<!--                    </li>-->
-<!--                    <li class="nav-item">-->
-<!--                        <a class="nav-link navigation" href="customer.html" id="linkCustomer">Customers</a>-->
-<!--                    </li>-->
-<!--                    <li class="nav-item">-->
-<!--                        <a class="nav-link navigation" href="item.html" id="linkItem">Items</a>-->
-<!--                    </li>-->
-<!--                    <li class="nav-item">-->
-<!--                        <a class="nav-link navigation" href="order.html" id="linkOrder">Orders</a>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </nav>-->
-
-<!--Navigation End-->
 
 <!--                    Customer -->
 <section class="container-fluid mt-3 " id="customerForm">
@@ -123,18 +96,17 @@
         <div class="col-12 col-md-5">
             <div class="mb-3">
                 <label class="form-label " for="cusID" id="lblCusId">Customer ID</label>
-                <input class="form-control " id="cusID" placeholder="C001" type="text">
-                <span class="errorMessageId">cus id is required field: Pattern C000 </span>
+                <input class="form-control " id="cusID" placeholder="C001" type="text" onclick="checkIdField()">
+                <span class="errorMessageId">cus id is required field: Pattern C00-000 </span>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="cusName" id="lblcusname">Customer Name</label>
                 <input class="form-control" id="cusName" placeholder="yashis" type="text" >
-                <span class="errorMessageName">cus name is required field: Minimum 5,Max 20, Space Allowed </span>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="cusAddress" id="lblcusAddress">Customer Address</label>
                 <input class="form-control" id="cusAddress" placeholder="Customer Address" type="text">
-                <span class="errorMessageAddress">cus Address is required field: Minimum 7 </span>
+
             </div>
             <div class="mb-3">
                 <label class="form-label" for="cusSalary" id="lblcusSalary">Customer Salary</label>
@@ -180,23 +152,20 @@
         <div class="col-12 col-md-5">
             <div class="mb-3">
                 <label class="form-label " for="itemId">Item Id</label>
-                <input class="form-control " id="itemId" placeholder="I001" type="text" onkeyup="checkFieldItemId()">
-                <span class="errorMessageId">cus id is required field: Pattern I000 </span>
+                <input class="form-control " id="itemId" placeholder="I001" type="text">
             </div>
             <div class="mb-3">
                 <label class="form-label" for="ItemName">Item Name</label>
-                <input class="form-control" id="ItemName" placeholder="Item Name" type="text" onkeyup="checkFieldItemName()">
-                <span class="errorMessageItemName">item name is required field: Minimum 5,Max 20, Space Allowed </span>
+                <input class="form-control" id="ItemName" placeholder="Item Name" type="text">
+
             </div>
             <div class="mb-3">
                 <label class="form-label" for="itemQty">Item Qty</label>
-                <input class="form-control" id="itemQty" placeholder="Item Qty" type="text" onkeyup="checkFieldItemQty()">
-                <span class="errorMessageItemQty">item Qty is required field: Only Numbers </span>
+                <input class="form-control" id="itemQty" placeholder="Item Qty" type="text">
             </div>
             <div class="mb-3">
                 <label class="form-label" for="unitPrice">Unit Price</label>
-                <input class="form-control" id="unitPrice" placeholder="Unit PriCe" type="text" onkeyup="checkFieldItemPrice()">
-                <span class="errorMessageItemPrice">item price is required field: Pattern 100.00 or 100 </span>
+                <input class="form-control" id="unitPrice" placeholder="Unit PriCe" type="text">
 
             </div>
         </div>
@@ -293,7 +262,7 @@
                             </div>
 
                             <div class="col-md-6 fw-bold">
-                                <label class="form-label" for="orderFormItemName">Item Name :</label>
+                                <label class="form-label" for="orderFormItemName" >Item Name :</label>
                                 <input class="form-control" id="orderFormItemName" readonly="readonly" required
                                        type="text">
                             </div>
@@ -395,16 +364,15 @@
 <script src="assets/boostrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/jQuery/jquery-3.6.0.min.js"></script>
 <script type="module" src="assets/js/javaScript.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
 <script src="/assets/boostrap/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>-->
 
 
 <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
 <!--<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
 <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
-<!--<script type="module" src="controller/customer.js"></script>-->
 <script type="module" src="controller/item.js"></script>
 <script type="module" src="controller/customer.js"></script>
 </body>

@@ -18,24 +18,16 @@ function loadTable(){
 $(document).ready(function(){
     $("#addItem").click(function(){
         var inputValueId = $("#itemId").val();
-        var inputValueFname = $("#ItemName").val();
+        var inputValuename = $("#ItemName").val();
         var inputValueQty = $("#itemQty").val();
         var inputValueprice = $("#unitPrice").val();
 
-        var itemObj = new itemModel(inputValueId, inputValueFname, inputValueQty, inputValueprice);
+        var itemObj = new itemModel(inputValueId, inputValuename, inputValueQty, inputValueprice);
 
         items.push(itemObj);
 
         loadTable();
 
-        // var newRow = `<tr>
-        //     <td>${inputValueId}</td>
-        //     <td>${inputValueFname}</td>
-        //     <td>${inputValueQty}</td>
-        //     <td>${inputValueprice}</td>
-        // </tr>`;
-
-        // $("#iTable").append(newRow);
         $("#itemId").val("");
         $("#ItemName").val("");
         $("#itemQty").val("");
@@ -49,14 +41,17 @@ $("#iTable").on('click','tr',function() {
     value=index;
 
     let id=$(this).find(".item-id-value").text();
-    let name=$(this).find(".item").text();
+    let name=$(this).find(".item-name-vale").text();
     let qty=$(this).find(".item-qty-value").text();
     let price=$(this).find(".item-price-value").text();
 
-    $("#cusID").val(id);
-    $("#cusName").val(name);
-    $("#cusAddress").val(address);
-    $("#cusSalary").val(salary);
+
+
+    $("#itemId").val(id);
+    $("#ItemName").val(name);
+    $("#itemQty").val(qty);
+    $("#unitPrice").val(price);
+    console.log(id)
 });
 
 $("#iTable").on('dblclick','tr',function() {
@@ -86,13 +81,19 @@ $("#updateItem").on('click', () => {
     var itemQty = $('#itemQty').val();
     var unitPrice = $('#unitPrice').val();
 
-    let customerUpdateObj = items[value];
+    let itemUpdateObj = items[value];
     itemUpdateObj.id=itemID;
     itemUpdateObj.name=itemName;
-    itemUpdateObj.qty=itemqty;
+    itemUpdateObj.qty=itemQty;
     itemUpdateObj.price=unitPrice;
 
     loadTable();
-    clearField();
+    // clearField();
 });
+function loadAllCustomerId() {
+    $('#itemId').empty();
+    for (let customerArElement of customer) {
+        $('#itemId').append(`<option>${customerArElement.id}</option>`);
+    }
+}
 

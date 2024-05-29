@@ -1,10 +1,11 @@
 export default class itemModel{
 
-    constructor(id, name, price, qty) {
+    constructor(id, name, qty, price) {
         this._id = id;
         this._name = name;
-        this._price = price;
         this._qty = qty;
+        this._price = price;
+
     }
 
     get id() {
