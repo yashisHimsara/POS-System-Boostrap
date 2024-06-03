@@ -27,6 +27,7 @@ $(document).ready(function(){
         items.push(itemObj);
 
         loadTable();
+        loadAllItemsId();
 
         $("#itemId").val("");
         $("#ItemName").val("");
@@ -90,10 +91,10 @@ $("#updateItem").on('click', () => {
     loadTable();
     // clearField();
 });
-function loadAllCustomerId() {
-    $('#itemId').empty();
-    for (let customerArElement of customer) {
-        $('#itemId').append(`<option>${customerArElement.id}</option>`);
+function loadAllItemsId() {
+    $('#orderFormItemId').empty();
+    for (let itemArElement of items) {
+        $('#orderFormItemId').append(`<option>${itemArElement.id}</option>`);
     }
 }
 
