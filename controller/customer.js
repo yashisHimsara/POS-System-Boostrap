@@ -18,6 +18,7 @@ function loadTable(){
     });
 }
 
+
     $("#addCustomer").on('click',function(){
         // console.log("addcustomer")
         var inputValueId = $("#cusID").val();
@@ -30,7 +31,7 @@ function loadTable(){
         customer.push(cusObj);
 
         loadTable();
-
+        loadAllCustomerId();
         // Clear input fields
         $("#cusID").val("");
         $("#cusName").val("");
@@ -91,8 +92,8 @@ $("#updateCustomer").on('click', () => {
 });
 
 function loadAllCustomerId() {
-    $('#cusID').empty();
+    $('#orderFormCstId').empty();
     for (let customerArElement of customer) {
-        $('#cusID').append(`<option>${customerArElement.id}</option>`);
+        $('#orderFormCstId').append(`<option>${customerArElement.id}</option>`);
     }
 }
