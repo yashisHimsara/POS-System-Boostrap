@@ -1,6 +1,11 @@
 import itemModel from "../model/itemModel.js";
 import {customer, items} from "../db/db.js";
 
+let selectedItemId;
+let itemName;
+let itemPrice;
+let itemQty;
+
 function loadTable(){
     $('#ItemTable').empty();
 
@@ -97,4 +102,18 @@ function loadAllItemsId() {
         $('#orderFormItemId').append(`<option>${itemArElement.id}</option>`);
     }
 }
+$('#orderFormItemId').on('change', function(){
+    selectedItemId = $('#orderFormItemId option:selected').text();
+    for (let itemArElement of items) {
+        if (itemArElement.id==selectedItemId){
+            itemName = itemArElement.name;
+            itemPrice = itemArElement.price;
+            itemQty =itemArElement.qty;
 
+            $('#orderFormItemName').val(itemName);
+            $('#orderFormPrice').val(itemPrice);
+            $('#orderFormQty').val(itemQty);
+            $('#orderQty').focus();
+        }
+    }
+});
