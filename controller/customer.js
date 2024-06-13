@@ -1,7 +1,15 @@
 import customerModel from "../model/customerModel.js";
 import {customer} from "../db/db.js";
 
+let selectedCustomerId;
+let selectedItemId;
+let itemName;
+let itemPrice;
+let itemQty;
+let orderQty;
 var value;
+
+$('.errorMessageId').hide();
 
 function loadTable(){
     $('#customerTable').empty();
@@ -20,7 +28,6 @@ function loadTable(){
 
 
     $("#addCustomer").on('click',function(){
-        // console.log("addcustomer")
         var inputValueId = $("#cusID").val();
         var inputValueFname = $("#cusName").val();
         var inputValueAddress = $("#cusAddress").val();
@@ -97,3 +104,74 @@ function loadAllCustomerId() {
         $('#orderFormCstId').append(`<option>${customerArElement.id}</option>`);
     }
 }
+$('#orderFormCstId').on('change', function(){
+    selectedCustomerId = $('#orderFormCstId option:selected').text();
+    for (let customerArElement of customer) {
+        if (customerArElement.id==selectedCustomerId){
+
+            $('#orderFormCusName').val(customerArElement.name);
+            $('#orderFormCusSalary').val(customerArElement.salary);
+            $('#orderFormCusAddress').val(customerArElement.address);
+            $('#orderFormItemId').focus();
+        }
+    }
+});
+
+$('#cusID').on('keyup', function () {
+    var cusid = $(this).val();
+    var cusidPattern = /^C\d{3}$/;
+    var errorMessage = $('.errorMessageId');
+
+    if (!cusidPattern.test(cusid)) {
+        errorMessage.show();
+        $(this).css({ 'border': '2px solid red' });
+    } else {
+        errorMessage.hide();
+        $(this).css({ 'border': '2px solid green' });
+    }
+});
+
+// Validate Customer Name
+$('#cusName').on('keyup', function () {
+    var cusName = $(this).val();
+    var cuanamePattern =  /^\s*\S.{3,18}\S\s*$/
+    var errorMessage = $('.errorMessageName');
+
+    if (!cuanamePattern.test(cusName)) {
+        errorMessage.show();
+        $(this).css({ 'border': '2px solid red' });
+    } else {
+        errorMessage.hide();
+        $(this).css({ 'border': '2px solid green' });
+    }
+});
+
+// Validate Customer Address
+$('#cusAddress').on('keyup', function () {
+    var cusAddress = $(this).val();
+    var cusAddressPattern = /^.{7,}$/;
+    var errorMessage = $('.errorMessageAddress');
+
+    if (!cusAddressPattern.test(cusAddress)) {
+        errorMessage.show();
+        $(this).css({ 'border': '2px solid red' });
+    } else {
+        errorMessage.hide();
+        $(this).css({ 'border': '2px solid green' });
+    }
+});
+
+
+$('#cusSalary').on('keyup', function () {
+    var cusSalary = $(this).val();
+    var salaryPattern = /^\d+(\.\d{1,2})?$/;
+    var errorMessage = $('.errorMessageSalary');
+
+    if (!salaryPattern.test(cusSalary)) {
+        errorMessage.show();
+        $(this).css({ 'border': '2px solid red' });
+    } else {
+        errorMessage.hide();
+        $(this).css({ 'border': '2px solid green' });
+    }
+});
