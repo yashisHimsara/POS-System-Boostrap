@@ -117,3 +117,59 @@ $('#orderFormItemId').on('change', function(){
         }
     }
 });
+
+$('#itemId').on('keyup', function () {
+    var itemId = $(this).val();
+    var itemIdPattern = /^I\d{3}$/;
+    var errorMessage = $('.errorMessageId');
+
+    if (!itemIdPattern.test(itemId)) {
+        errorMessage.show();
+        $(this).css({ 'border': '2px solid red' });
+    } else {
+        errorMessage.hide();
+        $(this).css({ 'border': '2px solid green' });
+    }
+});
+
+$('#ItemName').on('keyup', function () {
+    var itemName = $(this).val();
+    var errorMessage = $('.errorMessageName');
+
+    if (itemName.trim() === "") {
+        errorMessage.show();
+        $(this).css({ 'border': '2px solid red' });
+    } else {
+        errorMessage.hide();
+        $(this).css({ 'border': '2px solid green' });
+    }
+});
+
+$('#itemQty').on('keyup', function () {
+    var itemQty = $(this).val();
+    var itemQtyPattern = /^\d+$/;
+    var errorMessage = $('.errorMessageQty');
+
+    if (!itemQtyPattern.test(itemQty)) {
+        errorMessage.show();
+        $(this).css({ 'border': '2px solid red' });
+    } else {
+        errorMessage.hide();
+        $(this).css({ 'border': '2px solid green' });
+    }
+});
+
+$('#unitPrice').on('keyup', function () {
+    var unitPrice = $(this).val();
+    var unitPricePattern = /^\d+(\.\d{1,2})?$/;
+    var errorMessage = $('.errorMessagePrice');
+
+    if (!unitPricePattern.test(unitPrice)) {
+        errorMessage.show();
+        $(this).css({ 'border': '2px solid red' });
+    } else {
+        errorMessage.hide();
+        $(this).css({ 'border': '2px solid green' });
+    }
+});
+
